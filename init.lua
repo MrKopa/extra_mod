@@ -1,26 +1,7 @@
--- version : 220914 / DDMMYY
+-- version : 230914 / DDMMYY
 -- original author : MrKopa
 -- name : extra_mod [name might change in the near future]
 
-minetest.register_node("extra_mod:decowood",{
-                tiles = {"tutorial_decowood.png"},
-                groups = {snappy=1,choppy=2,oddly_breakable_by_hand=2,flamable=3},
-                })  
-                
-minetest.register_craft({
-            output = 'extra_mod:decowood 2',
-            recipe = {
-               {'default:wood','default:wood',''},
-               {'default:wood','default:wood',''},
-               {'','',''},
-            }
-            }) 
-            
-minetest.register_craft({
-  type = "cooking",
-  recipe = "extra_mod:decowood",
-  output = "default:wood",
-})
 
 minetest.register_craftitem("extra_mod:xtr_ore_shard",{
   description = "XTR Ore shard",
@@ -44,6 +25,26 @@ minetest.register_node("extra_mod:xtr_shard_block",{
   groups = {cracky=3,stone=1},
   drop = "extra_mod:xtr_shard_block",
   })
+
+minetest.register_node("extra_mod:tree_fence",{
+  tiles = {"xtr_fence_top.png","xtr_fence_top.png","xtr_fence_side.png","xtr_fence_side.png","xtr_fence_side.png","xtr_fence_side.png"},
+  description = "Large Tree Fence",
+  is_ground_content = false,
+  sunlight_propagates = true,
+  groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
+  paramtype = "light",
+  paramtype2 = "facedir",
+  drawtype = "nodebox",
+  selection_box = {
+    type = "fixed",
+    fixed = {-1/4, -1/1.36, -1/4, 1/4, 1/1.36, 1/4},
+  },
+  node_box = {
+    type = "fixed",
+    fixed = {-1/4, -1/1.36, -1/4, 1/4, 1/1.36, 1/4},
+    },
+  on_place = minetest.rotate_node,
+  })
     
 minetest.register_ore({
   ore_type = "scatter",
@@ -52,8 +53,8 @@ minetest.register_ore({
   clust_scarcity = 8*8*8,
   clust_num_ores = 8,
   clust_size = 4,
-  height_min = -31000,
-  height_max = 64,
+  height_min = -5000,
+  height_max = 32,
   })
 
 minetest.register_ore({
@@ -64,7 +65,7 @@ minetest.register_ore({
   clust_num_ores = 2,
   clust_size = 2,
   height_min = -31000,
-  height_max = -10,
+  height_max = -100,
   })
 
 
@@ -77,25 +78,12 @@ minetest.register_craft({
             }
             }) 
 
-minetest.register_node("extra_mod:test_node",{
-  tiles = {"xtr_fence_top.png","xtr_fence_top.png","xtr_fence_side.png","xtr_fence_side.png","xtr_fence_side.png","xtr_fence_side.png"},
-  description = "Simple Test Node",
-  is_ground_content = false,
-  sunlight_propagates = true,
-  groups = {tree = 1, choppy = 2, oddly_breakable_by_hand = 2, flammable = 2},
-  paramtype = "light",
-  paramtype2 = "facedir",
-  drawtype = "nodebox",
-  selection_box = {
-    type = "fixed",
-    fixed = {-1/4, -1/2, -1/4, 1/4, 1/2, 1/4},
-  },
-  node_box = {
-    type = "fixed",
-    fixed = {-1/4, -1/1.35, -1/4, 1/4, 1/1.35, 1/4},
-    },
-  on_place = minetest.rotate_node,
- 
-    
-
+minetest.register_craft({
+    output = "extra_mod:tree_fence 10",
+    recipe = {
+      {'','',''},
+      {'default:tree','default:stick','default:tree'},
+      {'default:tree','default:tree','default:tree'},
+  }
   })
+
